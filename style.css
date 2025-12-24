@@ -21,7 +21,7 @@ body {
 /* Container principal */
 #container {
   width: 350px;
-  min-height: 80vh;
+  min-height: 75vh;
   background: url("./assets/desenvolvedor-de-software-image-de-fundo.png")
     no-repeat center center;
   background-size: cover;
