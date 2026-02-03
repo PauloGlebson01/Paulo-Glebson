@@ -3,195 +3,189 @@
    Menu | Dark/Light | Reveal | Carousel | Share Modal
 ================================ */
 
-/* ==================================================
-   MENU LATERAL
-================================================== */
-const menuToggle = document.getElementById("menuToggle");
-const sidebar = document.getElementById("sidebar");
+document.addEventListener("DOMContentLoaded", () => {
 
-if (menuToggle && sidebar) {
-  menuToggle.addEventListener("click", () => {
-    sidebar.classList.toggle("open");
-  });
+  /* ==================================================
+     MENU LATERAL
+  ================================================== */
+  const menuToggle = document.getElementById("menuToggle");
+  const sidebar = document.getElementById("sidebar");
 
-  // Fecha ao clicar fora
-  document.addEventListener("click", (e) => {
-    if (
-      sidebar.classList.contains("open") &&
-      !sidebar.contains(e.target) &&
-      !menuToggle.contains(e.target)
-    ) {
-      sidebar.classList.remove("open");
-    }
-  });
-
-  // Fecha ao clicar em links
-  document.querySelectorAll(".sidebar-nav a").forEach(link => {
-    link.addEventListener("click", () => {
-      sidebar.classList.remove("open");
+  if (menuToggle && sidebar) {
+    menuToggle.addEventListener("click", (e) => {
+      e.stopPropagation();
+      sidebar.classList.toggle("open");
     });
-  });
-}
 
-/* ==================================================
-   DARK / LIGHT MODE
-================================================== */
-const themeToggle = document.getElementById("themeToggle");
-const savedTheme = localStorage.getItem("theme");
+    // Fecha ao clicar fora
+    document.addEventListener("click", (e) => {
+      if (
+        sidebar.classList.contains("open") &&
+        !sidebar.contains(e.target) &&
+        !menuToggle.contains(e.target)
+      ) {
+        sidebar.classList.remove("open");
+      }
+    });
 
-if (themeToggle) {
-  // Aplica tema salvo
-  if (savedTheme) {
-    document.body.classList.remove("dark", "light");
-    document.body.classList.add(savedTheme);
+    // Fecha ao clicar nos links
+    document.querySelectorAll(".sidebar-nav a").forEach(link => {
+      link.addEventListener("click", () => {
+        sidebar.classList.remove("open");
+      });
+    });
+  }
+
+  /* ==================================================
+     DARK / LIGHT MODE
+  ================================================== */
+  const themeToggle = document.getElementById("themeToggle");
+  const savedTheme = localStorage.getItem("theme") || "dark";
+
+  document.body.classList.add(savedTheme);
+
+  if (themeToggle) {
     themeToggle.textContent = savedTheme === "dark" ? "🌙" : "☀️";
-  } else {
-    document.body.classList.add("dark");
-    themeToggle.textContent = "🌙";
+
+    themeToggle.addEventListener("click", () => {
+      const isDark = document.body.classList.contains("dark");
+      const newTheme = isDark ? "light" : "dark";
+
+      document.body.classList.remove("dark", "light");
+      document.body.classList.add(newTheme);
+
+      localStorage.setItem("theme", newTheme);
+      themeToggle.textContent = newTheme === "dark" ? "🌙" : "☀️";
+    });
   }
 
-  // Alternar tema
-  themeToggle.addEventListener("click", () => {
-    const isDark = document.body.classList.contains("dark");
+  /* ==================================================
+     SCROLL REVEAL
+  ================================================== */
+  const revealElements = document.querySelectorAll(".reveal");
 
-    document.body.classList.toggle("dark", !isDark);
-    document.body.classList.toggle("light", isDark);
+  function revealOnScroll() {
+    const windowHeight = window.innerHeight;
+    const revealPoint = 120;
 
-    const theme = isDark ? "light" : "dark";
-    localStorage.setItem("theme", theme);
-    themeToggle.textContent = theme === "dark" ? "🌙" : "☀️";
+    revealElements.forEach(el => {
+      const elementTop = el.getBoundingClientRect().top;
+      if (elementTop < windowHeight - revealPoint) {
+        el.classList.add("active");
+      }
+    });
+  }
+
+  window.addEventListener("load", revealOnScroll);
+  window.addEventListener("scroll", revealOnScroll);
+
+  /* ==================================================
+     PORTFÓLIO – CAROUSEL AUTOMÁTICO
+  ================================================== */
+  document.querySelectorAll(".carousel").forEach(carousel => {
+    const track = carousel.querySelector(".carousel-track");
+    const slides = track?.querySelectorAll("img") || [];
+    const prevBtn = carousel.querySelector(".prev");
+    const nextBtn = carousel.querySelector(".next");
+
+    if (!track || slides.length <= 1) return;
+
+    let index = 0;
+    let interval;
+    const delay = 5000;
+
+    const updateCarousel = () => {
+      track.style.transform = `translateX(-${index * 100}%)`;
+    };
+
+    const nextSlide = () => {
+      index = (index + 1) % slides.length;
+      updateCarousel();
+    };
+
+    const prevSlide = () => {
+      index = (index - 1 + slides.length) % slides.length;
+      updateCarousel();
+    };
+
+    const startAuto = () => {
+      interval = setInterval(nextSlide, delay);
+    };
+
+    const stopAuto = () => {
+      clearInterval(interval);
+    };
+
+    nextBtn?.addEventListener("click", () => {
+      stopAuto();
+      nextSlide();
+      startAuto();
+    });
+
+    prevBtn?.addEventListener("click", () => {
+      stopAuto();
+      prevSlide();
+      startAuto();
+    });
+
+    ["mouseenter", "touchstart"].forEach(evt =>
+      carousel.addEventListener(evt, stopAuto)
+    );
+
+    ["mouseleave", "touchend"].forEach(evt =>
+      carousel.addEventListener(evt, startAuto)
+    );
+
+    startAuto();
   });
-}
 
-/* ==================================================
-   SCROLL REVEAL
-================================================== */
-const revealElements = document.querySelectorAll(".reveal");
+  /* ==================================================
+     COMPARTILHAMENTO – CARTÃO DIGITAL
+  ================================================== */
+  const cardLink = "https://paulo-glebson.vercel.app";
 
-function revealOnScroll() {
-  const windowHeight = window.innerHeight;
-  const revealPoint = 120;
+  const shareBtn = document.getElementById("shareBtn");
+  const shareModal = document.getElementById("shareModal");
+  const closeShare = document.getElementById("closeShare");
+  const copyLinkBtn = document.getElementById("copyLinkBtn");
+  const shareLinkBtn = document.getElementById("shareLinkBtn");
 
-  revealElements.forEach(el => {
-    const elementTop = el.getBoundingClientRect().top;
-    if (elementTop < windowHeight - revealPoint) {
-      el.classList.add("active");
+  shareBtn?.addEventListener("click", () => {
+    shareModal.style.display = "flex";
+  });
+
+  closeShare?.addEventListener("click", () => {
+    shareModal.style.display = "none";
+  });
+
+  shareModal?.addEventListener("click", (e) => {
+    if (e.target === shareModal) {
+      shareModal.style.display = "none";
     }
   });
-}
 
-window.addEventListener("load", revealOnScroll);
-window.addEventListener("scroll", revealOnScroll);
-
-/* ==================================================
-   PORTFOLIO CAROUSEL AUTOMÁTICO
-================================================== */
-document.querySelectorAll(".carousel").forEach(carousel => {
-  const track = carousel.querySelector(".carousel-track");
-  const slides = track?.querySelectorAll("img") || [];
-  const prevBtn = carousel.querySelector(".prev");
-  const nextBtn = carousel.querySelector(".next");
-
-  if (!track || slides.length === 0) return;
-
-  let index = 0;
-  let interval;
-  const delay = 5000;
-
-  function updateCarousel() {
-    track.style.transform = `translateX(-${index * 100}%)`;
-  }
-
-  function nextSlide() {
-    index = (index + 1) % slides.length;
-    updateCarousel();
-  }
-
-  function prevSlide() {
-    index = (index - 1 + slides.length) % slides.length;
-    updateCarousel();
-  }
-
-  function startAuto() {
-    interval = setInterval(nextSlide, delay);
-  }
-
-  function stopAuto() {
-    clearInterval(interval);
-  }
-
-  nextBtn?.addEventListener("click", () => {
-    stopAuto();
-    nextSlide();
-    startAuto();
-  });
-
-  prevBtn?.addEventListener("click", () => {
-    stopAuto();
-    prevSlide();
-    startAuto();
-  });
-
-  carousel.addEventListener("mouseenter", stopAuto);
-  carousel.addEventListener("mouseleave", startAuto);
-  carousel.addEventListener("touchstart", stopAuto);
-  carousel.addEventListener("touchend", startAuto);
-
-  startAuto();
-});
-
-/* ==================================================
-   COMPARTILHAMENTO – CARTÃO DIGITAL
-================================================== */
-const cardLink = "https://paulo-glebson.vercel.app";
-
-const shareBtn = document.getElementById("shareBtn");
-const shareModal = document.getElementById("shareModal");
-const closeShare = document.getElementById("closeShare");
-const copyLinkBtn = document.getElementById("copyLinkBtn");
-const shareLinkBtn = document.getElementById("shareLinkBtn");
-
-// Abrir modal
-shareBtn?.addEventListener("click", () => {
-  shareModal.style.display = "flex";
-});
-
-// Fechar modal
-closeShare?.addEventListener("click", () => {
-  shareModal.style.display = "none";
-});
-
-// Fecha ao clicar fora do conteúdo
-shareModal?.addEventListener("click", (e) => {
-  if (e.target === shareModal) {
-    shareModal.style.display = "none";
-  }
-});
-
-// Copiar link com mensagem personalizada
-copyLinkBtn?.addEventListener("click", () => {
-  const message = `Confira meu cartão digital profissional: ${cardLink}`;
-  
-  navigator.clipboard.writeText(message)
-    .then(() => {
+  copyLinkBtn?.addEventListener("click", async () => {
+    const message = `Confira meu cartão digital profissional: ${cardLink}`;
+    try {
+      await navigator.clipboard.writeText(message);
       alert("Mensagem copiada com sucesso!");
-    })
-    .catch(() => {
-      alert("Erro ao copiar a mensagem.");
-    });
-});
+    } catch {
+      alert("Erro ao copiar o link.");
+    }
+  });
 
-// Compartilhar (Web Share API)
-shareLinkBtn?.addEventListener("click", () => {
-  if (navigator.share) {
-    navigator.share({
-      title: "Cartão Digital Profissional",
-      text: `Confira meu cartão digital profissional:`,
-      url: cardLink
-    });
-  } else {
-    const fallbackMessage = `Confira meu cartão digital profissional: ${cardLink}`;
-    navigator.clipboard.writeText(fallbackMessage);
-    alert("Compartilhamento não suportado.\nO link foi copiado!");
-  }
+  shareLinkBtn?.addEventListener("click", async () => {
+    if (navigator.share) {
+      await navigator.share({
+        title: "Cartão Digital Profissional",
+        text: "Confira meu cartão digital profissional:",
+        url: cardLink
+      });
+    } else {
+      const fallback = `Confira meu cartão digital profissional: ${cardLink}`;
+      await navigator.clipboard.writeText(fallback);
+      alert("Compartilhamento não suportado. Link copiado!");
+    }
+  });
+
 });
