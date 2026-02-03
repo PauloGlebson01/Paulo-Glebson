@@ -1,129 +1,175 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Paulo Glebson | Cartão Digital Profissional</title>
-    <link rel="stylesheet" href="./style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Paulo Glebson | Cartão Digital Profissional</title>
+
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="style.css">
+  <link rel="shortcut icon" href="./assets/icon.png" type="image/x-icon">
 </head>
 
-<body>
-    <div id="container">
+<body class="dark">
 
-        <!-- Perfil -->
-        <div id="profile">
-            <img src="./assets/Paulo glebson.png" alt="Foto do Artista">
-            <p>Paulo Glebson | Dev Front-End | HTML | CSS | JAVASCRIPT | REACT</p>
+  <!-- BOTÃO DARK / LIGHT -->
+  <button class="theme-toggle" id="themeToggle" aria-label="Alternar tema">
+    🌙
+  </button>
+
+  <div class="card">
+
+    <!-- BOTÃO COMPARTILHAR -->
+    <button class="share-btn" id="shareBtn" aria-label="Compartilhar cartão">
+      🔗 Compartilhar
+    </button>
+
+    <!-- MODAL DE COMPARTILHAMENTO -->
+    <div class="share-modal" id="shareModal">
+
+      <h3>Compartilhar cartão</h3>
+
+      <button class="share-action" id="copyLinkBtn">
+        📋 Copiar link
+      </button>
+
+      <button class="share-action" id="shareLinkBtn">
+        📲 Compartilhar
+      </button>
+
+      <div class="qr-box">
+        <div class="qr-container">
+          <!-- QR Code gerado via API (link correto) -->
+          <img class="qr"
+            src="https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=https://paulo-glebson.vercel.app"
+            alt="QR Code do Cartão Digital Profissional">
+
+          <!-- Logo central pequena -->
+          <img class="qr-center" src="./assets/Paulo glebson.png" alt="Logo paulo Glebson">
         </div>
+        <p>Escaneie o QR Code</p>
+      </div>
 
-        <nav>
-            <ul class="menu">
-
-                <!-- Venda do Ebook -->
-                <li>
-                    <a href="https://pay.kiwify.com.br/Tx6eVPB" target="_blank" aria-label="Loja Online"
-                        class="btn-ebook-animado">
-
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
-                            fill="#ff9800" style="vertical-align: middle; margin-right: 6px;">
-                            <path d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2Zm10 
-            0c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 
-            2-2-.9-2-2-2ZM7.17 14h9.66c.75 0 1.41-.41 
-            1.75-1.03l3.58-6.49-1.74-.98L16.83 
-            12H8.53L4.27 3H1v2h2l3.6 
-            7.59-1.35 2.44C4.52 15.37 
-            5.48 17 7.17 17H19v-2H7.17Z" />
-                        </svg>
-                        Ebook
-                    </a>
-                </li>
-
-                <!-- WhatsApp -->
-                <li>
-                    <a href="https://api.whatsapp.com/send/?phone=5583986066093&text=Gostaria%20de%20mais%20informações%20sobre%20os%20serviços%20da%20SoftPower%20"
-                        target="_blank" aria-label="WhatsApp SoftPower">
-
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
-                            fill="#25D366" style="vertical-align: middle; margin-right: 5px;">
-                            <path
-                                d="M12 2a10 10 0 0 0-8.64 15.03L2 22l5.12-1.34A10 
-            10 0 1 0 12 2Zm0 18a8 8 0 0 1-4.12-1.14l-.3-.18-3.04.8.81-2.96-.2-.3A8 
-            8 0 1 1 12 20Zm4.45-5.27c-.24-.12-1.43-.7-1.65-.78-.22-.08-.38-.12-.54.12-.16.24-.62.78-.76.94-.14.16-.28.18-.52.06-.24-.12-1.02-.38-1.94-1.2-.72-.64-1.2-1.42-1.34-1.66-.14-.24-.02-.38.1-.5.12-.12.24-.28.36-.42.12-.14.16-.24.24-.4.08-.16.04-.3-.02-.42-.06-.12-.54-1.3-.74-1.78-.2-.48-.4-.42-.54-.42-.14 0-.3-.02-.46-.02-.16 0-.42.06-.64.3-.22.24-.84.82-.84 2 0 1.18.86 2.32.98 2.48.12.16 1.7 2.6 4.12 3.64.58.25 1.02.4 1.36.52.58.18 1.1.16 1.52.1.46-.06 1.43-.58 1.64-1.14.2-.56.2-1.04.14-1.14-.06-.1-.22-.16-.46-.28Z" />
-                        </svg>
-                        WhatsApp
-                    </a>
-                </li>
-
-                <!-- Site da empresa -->
-                <li>
-                    <a href="https://softpower-solucoes-digitais.vercel.app/site.html" target="_blank"
-                        aria-label="Site Oficial">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
-                            fill="#1e90ff" style="vertical-align: middle; margin-right: 5px;">
-                            <path
-                                d="M12 2a10 10 0 1 0 .001 20.001A10 10 0 0 0 12 2Zm7.93 9h-3.02a15.6 15.6 0 0 0-1.38-5.02A8.03 8.03 0 0 1 19.93 11ZM12 4c.83 0 2.07 1.72 2.74 5H9.26C9.93 5.72 11.17 4 12 4ZM4.07 13h3.02a15.6 15.6 0 0 0 1.38 5.02A8.03 8.03 0 0 1 4.07 13Zm3.02-2H4.07a8.03 8.03 0 0 1 4.4-5.02A15.6 15.6 0 0 0 7.09 11ZM12 20c-.83 0-2.07-1.72-2.74-5h5.48C14.07 18.28 12.83 20 12 20Zm3.53-1.98A15.6 15.6 0 0 0 16.91 13h3.02a8.03 8.03 0 0 1-4.4 5.02Z" />
-                        </svg>
-                        Nossos Serviços
-                    </a>
-                </li>
-
-                <!-- Instagram -->
-                <li>
-                    <a href="https://instagram.com/softpower.cards" target="_blank" aria-label="Instagram SoftPower">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
-                            fill="#C13584" style="vertical-align: middle; margin-right: 5px;">
-                            <path d="M7 2C4.24 2 2 4.24 2 7v10c0 2.76 2.24 5 5 5h10c2.76 
-            0 5-2.24 5-5V7c0-2.76-2.24-5-5-5H7Zm10 
-            2c1.66 0 3 1.34 3 3v10c0 1.66-1.34 
-            3-3 3H7c-1.66 0-3-1.34-3-3V7c0-1.66 
-            1.34-3 3-3h10Zm-5 
-            3a5 5 0 1 0 0 10 5 5 0 0 0 
-            0-10Zm0 
-            2a3 3 0 1 1 0 6 3 3 0 0 
-            1 0-6Zm4.5-2a1.5 
-            1.5 0 1 0 0 3 1.5 
-            1.5 0 0 0 0-3Z" />
-                        </svg>
-                        SoftPower
-                    </a>
-                </li>
-
-            </ul>
-        </nav>
-
-        <!-- Redes sociais (rodapé) -->
-        <div id="social-links">
-            <!-- Instagram -->
-            <a href="https://instagram.com/softpower.cards" target="_blank" aria-label="Instagram">
-                <i class="fa-brands fa-instagram"></i>
-            </a>
-
-            <!-- Site -->
-            <a href="https://softpower-solucoes-digitais.vercel.app/site.html" target="_blank"
-                aria-label="Site oficial">
-                <i class="fa-solid fa-globe"></i>
-            </a>
-
-            <!-- Ebook -->
-            <a href="https://pay.kiwify.com.br/Tx6eVPB" target="_blank" aria-label="Comprar Ebook">
-                <i class="fa-solid fa-bag-shopping"></i>
-            </a>
-
-            <!-- WhatsApp -->
-            <a href="https://api.whatsapp.com/send/?phone=5583986066093&text=Gostaria%20de%20mais%20informações%20sobre%20os%20serviços%20da%20SoftPower%20"
-                target="_blank" aria-label="WhatsApp">
-                <i class="fa-brands fa-whatsapp"></i>
-            </a>
-        </div>
-
-        <footer>
-            &copy; 2026 Paulo Glebson - Todos os direitos reservados
-        </footer>
+      <button class="close-share" id="closeShare">
+        Fechar
+      </button>
     </div>
 
-    <script src="script.js"></script>
+    <!-- LOGO -->
+    <div class="logo">
+      <img src="./assets/Paulo glebson.png" alt="SoftPower Soluções Digitais">
+    </div>
+
+    <!-- TÍTULOS -->
+    <h1>Paulo Glebson</h1>
+    <p class="subtitle"> Desenvolvedor Web </p>
+
+    <!-- BOTÕES -->
+    <div class="buttons">
+
+      <!-- EBOOK (CTA PRINCIPAL) -->
+      <a href="https://pay.kiwify.com.br/Tx6eVPB" class="btn-ebook" target="_blank"
+        aria-label="Comprar Ebook SoftPower">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path fill="currentColor" d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 
+          2-2-.9-2-2-2zm10 0c-1.1 0-1.99.9-1.99 2S15.9 22 17 22s2-.9 
+          2-2-.9-2-2-2zM7.2 14h9.45c.75 0 
+          1.41-.41 1.75-1.03l3.58-6.49a1 1 0 
+          00-.87-1.48H5.21L4.27 2H1v2h2l3.6 
+          7.59-1.35 2.44C4.52 15.37 5.48 17 
+          7 17h12v-2H7.42a.25.25 0 
+          01-.22-.37L7.2 14z" />
+        </svg>
+        <span>eBook</span>
+      </a>
+
+      <!-- WHATSAPP -->
+      <a href="https://api.whatsapp.com/send/?phone=5583986066093&text=Gostaria%20de%20mais%20informações%20sobre%20os%20serviços%20da%20SoftPower%20." class="whatsapp-btn"
+        target="_blank" aria-label="Falar no WhatsApp">
+        <svg viewBox="0 0 32 32" aria-hidden="true">
+          <path fill="currentColor"
+            d="M16.01 3.2c-7.07 0-12.8 5.73-12.8 12.8 0 2.26.59 4.38 1.62 6.22L3.1 28.8l6.76-1.78a12.73 12.73 0 006.15 1.57c7.07 0 12.8-5.73 12.8-12.8S23.08 3.2 16.01 3.2z" />
+        </svg>
+        <span>WhatsApp</span>
+      </a>
+
+      <!-- SITE -->
+      <a href="https://softpower-solucoes-digitais.vercel.app/site.html" class="secondary" target="_blank" aria-label="Nossos Serviços">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path fill="currentColor"
+            d="M12 2a10 10 0 100 20 10 10 0 000-20zm7.93 9h-3.18a15.9 15.9 0 00-1.36-5.14A8.03 8.03 0 0119.93 11zM12 4.07c.9 1.24 1.62 3.12 2.04 5.93H9.96C10.38 7.19 11.1 5.31 12 4.07zM4.07 13h3.18a15.9 15.9 0 001.36 5.14A8.03 8.03 0 014.07 13zm3.18-2H4.07a8.03 8.03 0 013.54-5.14A15.9 15.9 0 007.25 11zm2.71 2h4.08c-.42 2.81-1.14 4.69-2.04 5.93-.9-1.24-1.62-3.12-2.04-5.93zm6.79 0h3.18a8.03 8.03 0 01-3.54 5.14A15.9 15.9 0 0016.75 13z" />
+        </svg>
+        <span>Nossos Serviços</span>
+      </a>
+
+      
+      <!-- INSTAGRAM -->
+      <a href="https://instagram.com/softpower.cards" class="secondary" target="_blank"
+        aria-label="Instagram SoftPower">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path fill="currentColor"
+            d="M12 2.16c3.2 0 3.58.01 4.85.07 1.17.05 1.97.24 2.43.4.6.22 1.02.48 1.47.93.45.45.71.87.93 1.47.16.46.35 1.26.4 2.43.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.05 1.17-.24 1.97-.4 2.43-.22.6-.48 1.02-.93 1.47-.45.45-.87.71-1.47.93-.46.16-1.26.35-2.43.4-1.27.06-1.65.07-4.85.07s-3.58-.01-4.85-.07c-1.17-.05-1.97-.24-2.43-.4-.6-.22-1.02-.48-1.47-.93-.45-.45-.71-.87-.93-1.47-.16-.46-.35-1.26-.4-2.43C2.17 15.58 2.16 15.2 2.16 12s.01-3.58.07-4.85c.05-1.17.24-1.97.4-2.43.22-.6.48-1.02.93-1.47.45-.45.87-.71 1.47-.93.46-.16 1.26-.35 2.43-.4C8.42 2.17 8.8 2.16 12 2.16zM12 7.2a4.8 4.8 0 100 9.6 4.8 4.8 0 000-9.6zm0 7.92a3.12 3.12 0 110-6.24 3.12 3.12 0 010 6.24zm5.46-8.88a1.12 1.12 0 110 2.24 1.12 1.12 0 010-2.24z" />
+        </svg>
+        <span>Instagram</span>
+      </a>
+
+    </div>
+
+<!-- RODAPÉ -->
+<footer class="footer">
+  <div class="socials">
+    <!-- eBook -->
+    <a href="https://pay.kiwify.com.br/Tx6eVPB" target="_blank" aria-label="Comprar eBook">
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path fill="currentColor"
+          d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 
+          2-2-.9-2-2-2zm10 0c-1.1 0-1.99.9-1.99 2S15.9 22 17 22s2-.9 
+          2-2-.9-2-2-2zM7.2 14h9.45c.75 0 
+          1.41-.41 1.75-1.03l3.58-6.49a1 1 0 
+          00-.87-1.48H5.21L4.27 2H1v2h2l3.6 
+          7.59-1.35 2.44C4.52 15.37 5.48 17 
+          7 17h12v-2H7.42a.25.25 0 
+          01-.22-.37L7.2 14z" />
+      </svg>
+    </a>
+
+    <!-- WhatsApp -->
+    <a href="https://api.whatsapp.com/send/?phone=5583986066093&text=Gostaria%20de%20mais%20informações%20sobre%20os%20serviços%20da%20SoftPower%20." target="_blank" aria-label="WhatsApp">
+      <svg viewBox="0 0 32 32" aria-hidden="true">
+        <path fill="currentColor"
+          d="M16.01 3.2c-7.07 0-12.8 5.73-12.8 12.8 0 2.26.59 4.38 1.62 6.22L3.1 28.8l6.76-1.78a12.73 12.73 0 006.15 1.57c7.07 0 12.8-5.73 12.8-12.8S23.08 3.2 16.01 3.2z" />
+      </svg>
+    </a>
+
+    <!-- Nossos Serviços / Site -->
+    <a href="https://softpower-solucoes-digitais.vercel.app/site.html" target="_blank" aria-label="Nossos Serviços">
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path fill="currentColor"
+          d="M12 2a10 10 0 100 20 10 10 0 000-20zm7.93 9h-3.18a15.9 15.9 0 00-1.36-5.14A8.03 8.03 0 0119.93 11zM12 4.07c.9 1.24 1.62 3.12 2.04 5.93H9.96C10.38 7.19 11.1 5.31 12 4.07zM4.07 13h3.18a15.9 15.9 0 001.36 5.14A8.03 8.03 0 014.07 13zm3.18-2H4.07a8.03 8.03 0 013.54-5.14A15.9 15.9 0 007.25 11zm2.71 2h4.08c-.42 2.81-1.14 4.69-2.04 5.93-.9-1.24-1.62-3.12-2.04-5.93zm6.79 0h3.18a8.03 8.03 0 01-3.54 5.14A15.9 15.9 0 0016.75 13z" />
+      </svg>
+    </a>
+
+    <!-- Instagram -->
+    <a href="https://instagram.com/softpower.cards" target="_blank" aria-label="Instagram">
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path fill="currentColor"
+          d="M12 2.16c3.2 0 3.58.01 4.85.07 1.17.05 1.97.24 2.43.4.6.22 1.02.48 1.47.93.45.45.71.87.93 1.47.16.46.35 1.26.4 2.43.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.05 1.17-.24 1.97-.4 2.43-.22.6-.48 1.02-.93 1.47-.45.45-.87.71-1.47.93-.46.16-1.26.35-2.43.4-1.27.06-1.65.07-4.85.07s-3.58-.01-4.85-.07c-1.17-.05-1.97-.24-2.43-.4-.6-.22-1.02-.48-1.47-.93-.45-.45-.71-.87-.93-1.47-.16-.46-.35-1.26-.4-2.43C2.17 15.58 2.16 15.2 2.16 12s.01-3.58.07-4.85c.05-1.17.24-1.97.4-2.43.22-.6.48-1.02.93-1.47.45-.45.87-.71 1.47-.93.46-.16 1.26-.35 2.43-.4C8.42 2.17 8.8 2.16 12 2.16zM12 7.2a4.8 4.8 0 100 9.6 4.8 4.8 0 000-9.6zm0 7.92a3.12 3.12 0 110-6.24 3.12 3.12 0 010 6.24zm5.46-8.88a1.12 1.12 0 110 2.24 1.12 1.12 0 010-2.24z" />
+      </svg>
+    </a>
+  </div>
+
+  <p>© 2026 Paulo Glebson | Todos os direitos reservados</p>
+</footer>
+
+  </div>
+
+  <!-- JS -->
+  <script src="script.js"></script>
+
 </body>
 
 </html>

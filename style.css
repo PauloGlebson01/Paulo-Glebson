@@ -1,220 +1,454 @@
-
-/* Reset */
+/* =========================
+   RESET & BASE
+========================= */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: "Arial", sans-serif;
+  font-family: "Poppins", sans-serif;
 }
 
-/* Container principal */
+/* =========================
+   BODY (PADRÃO = DARK)
+========================= */
 body {
-  background: #111;
-  color: #f5c518;
-  display: flex;
-  justify-content: center;
-  align-items: center; /* centraliza verticalmente */
   min-height: 100vh;
-  padding: 20px;
-}
-
-/* Container principal */
-#container {
-  width: 350px;
-  min-height: 75vh;
-  background: url("./assets/desenvolvedor-de-software-image-de-fundo.png")
-    no-repeat center center;
-  background-size: cover;
-  border-radius: 12px;
-  box-shadow: 0 8px 20px rgba(255, 254, 254, 0.5);
-  padding: 20px;
-  position: relative;
-  overflow: hidden;
-
   display: flex;
-  flex-direction: column;
-  align-items: center; /* centraliza horizontalmente */
-  justify-content: center; /* centraliza verticalmente */
-  text-align: center; /* centraliza textos */
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #121212, #121212);
+  color: #ffffff;
 }
 
-/* Overlay */
-#container::before {
-  content: "";
+/* =========================
+   BOTÃO DARK / LIGHT
+========================= */
+.theme-toggle {
+  position: fixed;
+  top: 18px;
+  right: 18px;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+  font-size: 18px;
+  background: #121212;
+  color: #ffffff;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+  transition: 0.3s;
+  z-index: 999;
+}
+
+.theme-toggle:hover {
+  transform: scale(1.08);
+}
+
+/* =========================
+   CARD
+========================= */
+.card {
+  position: relative;
+  width: 100%;
+  max-width: 420px;
+  background: #121212;
+  backdrop-filter: blur(12px);
+  border-radius: 22px;
+  padding: 30px 25px;
+  text-align: center;
+  box-shadow: 0 15px 40px #ffffff13;
+  animation: fadeUp 0.6s ease forwards;
+  overflow: hidden;
+}
+
+/* =========================
+   BOTÃO COMPARTILHAR
+========================= */
+.share-btn {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  background: linear-gradient(135deg, #2199ef, #2199ef);
+  color: #fff;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 20px;
+  font-size: 12px;
+  cursor: pointer;
+  box-shadow: 0 0 14px #2199ef;
+  transition: 0.3s;
+  z-index: 5;
+}
+
+.share-btn:hover {
+  transform: scale(1.06);
+}
+
+/* =========================
+   MODAL COMPARTILHAR
+========================= */
+.share-modal {
   position: absolute;
   inset: 0;
-  background: rgba(26, 26, 26, 0.85);
-  border-radius: 12px;
-  z-index: 0;
+  background: rgba(13, 15, 21, 0.96);
+  backdrop-filter: blur(8px);
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  border-radius: 22px;
+  z-index: 20;
+  animation: fadeUp 0.4s ease forwards;
 }
 
-#container > * {
-  position: relative;
-  z-index: 1;
-  width: 100%;
+.share-modal h3 {
+  font-size: 18px;
+  font-weight: 600;
+  color: #ffffff;
 }
 
-/* Perfil */
-#profile {
-  text-align: center;
-  transition: 0.3s;
-  margin-bottom: 35px;
-}
-
-#profile img {
-  width: 80px;
-  height: 80px;
-  border-radius: 50%;
-  transition: 0.4s ease;
-  box-shadow: 0 0 10px #fff;
-  margin-bottom: 20px;
-}
-
-#profile img:hover {
-  transform: scale(1.05);
-  box-shadow: 0 0 25px #fff, 0 0 50px #2199ef;
-}
-
-#profile p {
-  margin-top: 10px;
-  font-size: 1rem;
+.share-action {
+  width: 80%;
+  padding: 12px;
+  border-radius: 14px;
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
   color: #fff;
-}
-
-/* Menu de contato */
-nav {
-  margin-bottom: 35px;
-  width: 100%;
-}
-
-nav .menu li {
-  list-style: none;
-  margin: 8px 0;
-}
-
-nav .menu a {
-  color: #fff;
-  text-decoration: none;
-  font-weight: bold;
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 8px;
-  padding: 10px;
-  background: rgba(250, 250, 249, 0.08);
-  border-radius: 8px;
-  transition: all 0.3s ease;
-  width: 100%;
+  background: linear-gradient(135deg, #2199ef, #2199ef);
+  transition: 0.3s;
 }
 
-nav .menu a:hover {
-  background: #2199ef42;
-  color: #1a1a1a;
+.share-action:hover {
   transform: translateY(-2px);
+  box-shadow: 0 10px 25px #2199ef1f;
 }
 
-/* Redes sociais */
-#social-links {
-  display: flex;
-  justify-content: center;
-  gap: 12px;
-  margin-bottom: 20px;
+/* =========================
+   QR CODE COM IMAGEM CENTRAL
+========================= */
+.qr-box {
+  text-align: center;
+  margin-top: 6px;
+}
+
+.qr-container {
+  position: relative;
+  display: inline-block;
+  width: 180px;
+  height: 180px;
+}
+
+.qr-container .qr {
   width: 100%;
+  height: 100%;
+  border-radius: 14px;
+  background: #fff;
+  padding: 6px;
 }
 
-#social-links a {
-  color: #fff;
-  font-size: 1.5rem;
-  transition: transform 0.3s ease, color 0.3s ease;
+.qr-container .qr-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 30px;       /* Logo ≈ 15-20% do QR Code */
+  height: 30px;
+  transform: translate(-50%, -50%);
+  border-radius: 6px;
+  background: #fff;   /* Pequeno fundo para não atrapalhar leitura */
+  padding: 2px;
+  z-index: 2;
 }
 
-#social-links a:hover {
-  color: #2199ef42;
-  animation: pulse 0.6s ease-in-out;
+/* =========================
+   FECHAR MODAL
+========================= */
+.close-share {
+  background: transparent;
+  border: none;
+  color: #ffffff;
+  font-size: 13px;
+  cursor: pointer;
+  margin-top: 6px;
 }
 
-/* Animação pulse */
-@keyframes pulse {
+/* =========================
+   LOGO
+========================= */
+.logo {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  margin: 0 auto 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background: #121212;
+  animation: fadeZoom 0.8s ease forwards;
+  box-shadow:
+    0 0 0 4px #2199ef,
+    0 0 30px #2199ef;
+}
+
+.logo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* =========================
+   TEXTOS
+========================= */
+h1 {
+  font-size: 35px;
+  font-weight: 600;
+}
+
+.subtitle {
+  font-size: 14px;
+  color: #6b7280;
+  margin-bottom: 18px;
+}
+
+/* =========================
+   SERVICES
+========================= */
+.services {
+  text-align: center;
+  margin: 20px 0;
+}
+
+.services p {
+  font-size: 14px;
+  margin: 10px 0;
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  justify-content: center;
+}
+
+.services span {
+  color: #2199ef;
+}
+
+/* =========================
+   BUTTONS
+========================= */
+.buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 20px;
+}
+
+.buttons a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  text-decoration: none;
+  padding: 14px;
+  border-radius: 14px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #ffffff;
+  transition: 0.3s;
+}
+
+/* BOTÕES GRADIENTE */
+.buttons a.btn-ebook,
+.buttons a.whatsapp-btn {
+  background: linear-gradient(135deg, #008cff, #00c3ff);
+}
+
+.buttons a.whatsapp-btn {
+  background: linear-gradient(135deg, #25D366, #1ebe5d);
+}
+
+/* BOTÕES SECUNDÁRIOS */
+.buttons a.secondary {
+  background: transparent;
+  border: 1px solid #6b7280;
+  color: #ffffff;
+}
+
+/* HOVER PARA TODOS OS BOTÕES */
+.buttons a:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px #2199ef3a;
+}
+
+/* SVG NOS BOTÕES */
+.buttons a svg {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+  color: currentColor;
+}
+
+/* =========================
+   BOTÃO EBOOK COM LUMINOSO + PULSO
+========================= */
+a.btn-ebook {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 18px;
+  border-radius: 10px;
+  font-weight: 700;
+  text-decoration: none;
+  color: #ffffff;
+  background: linear-gradient(135deg, #008cff, #00c3ff);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  z-index: 1;
+  overflow: hidden;
+  animation: ebookPulse 2s infinite;
+}
+
+a.btn-ebook svg {
+  width: 22px;
+  height: 22px;
+  flex-shrink: 0;
+}
+
+a.btn-ebook span {
+  white-space: nowrap;
+}
+
+a.btn-ebook::before {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle at center, rgba(0, 255, 255, 0.45), transparent 60%);
+  opacity: 0.6;
+  transform: rotate(0deg);
+  transition: transform 0.5s ease;
+  z-index: 0;
+  filter: blur(12px);
+  pointer-events: none;
+}
+
+a.btn-ebook:hover {
+  transform: scale(1.08);
+  box-shadow: 0 0 25px #2199ef;
+}
+
+a.btn-ebook:hover::before {
+  transform: rotate(45deg);
+}
+
+@keyframes ebookPulse {
   0% {
     transform: scale(1);
+    box-shadow: 0 0 8px rgba(0, 195, 255, 0.45);
   }
   50% {
-    transform: scale(1.3);
+    transform: scale(1.06);
+    box-shadow: 0 0 20px rgba(0, 195, 255, 0.6);
   }
   100% {
     transform: scale(1);
+    box-shadow: 0 0 8px rgba(0, 195, 255, 0.45);
   }
 }
 
-.btn-ebook-animado {
-    position: relative;
-    display: inline-flex;
-    align-items: center;
-    padding: 12px 18px;
-    border-radius: 10px;
-    background: linear-gradient(135deg, #ff9800, #ffb74d);
-    color: #000;
-    font-weight: 700;
-    overflow: hidden;
-    animation: pulse 1.6s infinite;
-    transition: transform 0.3s ease;
+/* =========================
+   FOOTER
+========================= */
+.footer {
+  margin-top: 18px;
+  font-size: 11px;
+  color: rgba(255, 254, 254, 0.5);
 }
 
-/* Brilho animado */
-.btn-ebook-animado::after {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 60%;
-    height: 100%;
-    background: linear-gradient(
-        120deg,
-        transparent,
-        rgba(255, 255, 255, 0.6),
-        transparent
-    );
-    animation: shine 2.8s infinite;
+/* =========================
+   ANIMAÇÕES
+========================= */
+@keyframes fadeZoom {
+  from { opacity: 0; transform: scale(0.85); }
+  to { opacity: 1; transform: scale(1); }
 }
 
-/* Hover com destaque */
-.btn-ebook-animado:hover {
-    transform: scale(1.08);
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
-/* Pulse */
-@keyframes pulse {
-    0% {
-        box-shadow: 0 0 0 0 #2199ef;
-    }
-    70% {
-        box-shadow: 0 0 0 14px rgba(255, 152, 0, 0);
-    }
-    100% {
-        box-shadow: 0 0 0 0 rgba(255, 152, 0, 0);
-    }
+/* =========================
+   LIGHT MODE
+========================= */
+body.light {
+  background: #f4f6fb;
+  color: #2199ef;
 }
 
-/* Shine */
-@keyframes shine {
-    0% { left: -100%; }
-    60% { left: 120%; }
-    100% { left: 120%; }
+body.light .card {
+  background: #ffffff;
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.08);
 }
 
+body.light .subtitle {
+  color: #6b7280;
+}
 
-/* Footer */
-footer {
+body.light .logo {
+  background: #ffffff;
+  box-shadow:
+    0 0 0 4px rgba(37, 99, 235, 0.15),
+    0 10px 25px rgba(37, 99, 235, 0.35);
+}
+
+body.light .buttons a.secondary {
+  border-color: rgba(0, 0, 0, 0.15);
+  color: #2199ef;
+}
+
+body.light .footer {
+  color: #6b7280;
+}
+
+/* =========================
+   DARK MODE
+========================= */
+body.dark {
+  background: linear-gradient(135deg, #0d0f15, #06070c);
+  color: #ffffff;
+}
+
+.footer {
   text-align: center;
-  margin-top: 15px;
-  font-size: 0.85rem;
-  color: #fff;
+  padding: 20px;
+  margin-top: 30px;
 }
 
-/* Responsividade */
-@media (max-width: 400px) {
-  #container {
-    padding: 15px;
-    width: 100%;
-  }
+.footer .socials {
+  margin-bottom: 10px;
+}
+
+.footer .socials a {
+  display: inline-block;
+  margin: 0 15px;
+  color: #6b7280;
+  transition: color 0.3s;
+}
+
+.footer .socials a:hover {
+  color: #2199ef;
+}
+
+.footer svg {
+  width: 28px;
+  height: 28px;
 }
