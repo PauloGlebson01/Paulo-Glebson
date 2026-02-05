@@ -18,31 +18,48 @@ body {
   justify-content: center;
   background: linear-gradient(135deg, #121212, #121212);
   color: #ffffff;
+  transition: 0.3s;
 }
 
 /* =========================
-   BOTÃO DARK / LIGHT
+   BOTÃO DARK / LIGHT (ATUALIZADO)
 ========================= */
+/* BOTÃO DARK / LIGHT */
 .theme-toggle {
-  position: fixed;
+  position: absolute; /* dentro do card */
   top: 18px;
-  right: 18px;
+  left: 18px; /* canto superior esquerdo do card */
   width: 42px;
   height: 42px;
   border-radius: 50%;
   border: none;
   cursor: pointer;
   font-size: 18px;
-  background: #121212;
-  color: #ffffff;
+  background: #ffffff; /* default */
+  color: #121212;       /* default */
   backdrop-filter: blur(10px);
   box-shadow: 0 8px 20px rgba(0,0,0,0.25);
-  transition: 0.3s;
-  z-index: 999;
+  transition: transform 0.3s, background 0.3s, color 0.3s;
+  z-index: 5;
 }
 
 .theme-toggle:hover {
-  transform: scale(1.08);
+  transform: scale(1.1);
+}
+
+/* =========================
+   CORES POR TEMA
+========================= */
+body.dark .theme-toggle {
+  background: #121212; /* escuro quando tema dark */
+  color: #ffffff;
+  box-shadow: 0 8px 20px rgba(255,255,255,0.15);
+}
+
+body.light .theme-toggle {
+  background: #ffffff; /* claro quando tema light */
+  color: #121212;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
 }
 
 /* =========================
@@ -60,6 +77,7 @@ body {
   box-shadow: 0 15px 40px #ffffff13;
   animation: fadeUp 0.6s ease forwards;
   overflow: hidden;
+  transition: background 0.3s, box-shadow 0.3s;
 }
 
 /* =========================
@@ -77,7 +95,7 @@ body {
   font-size: 12px;
   cursor: pointer;
   box-shadow: 0 0 14px #2199ef;
-  transition: 0.3s;
+  transition: transform 0.3s;
   z-index: 5;
 }
 
@@ -123,7 +141,7 @@ body {
   justify-content: center;
   gap: 8px;
   background: linear-gradient(135deg, #2199ef, #2199ef);
-  transition: 0.3s;
+  transition: transform 0.3s, box-shadow 0.3s;
 }
 
 .share-action:hover {
@@ -158,11 +176,11 @@ body {
   position: absolute;
   top: 50%;
   left: 50%;
-  width: 30px;       /* Logo ≈ 15-20% do QR Code */
+  width: 30px;       
   height: 30px;
   transform: translate(-50%, -50%);
   border-radius: 6px;
-  background: #fff;   /* Pequeno fundo para não atrapalhar leitura */
+  background: #fff;   
   padding: 2px;
   z-index: 2;
 }
@@ -219,27 +237,6 @@ h1 {
 }
 
 /* =========================
-   SERVICES
-========================= */
-.services {
-  text-align: center;
-  margin: 20px 0;
-}
-
-.services p {
-  font-size: 14px;
-  margin: 10px 0;
-  display: flex;
-  gap: 8px;
-  align-items: center;
-  justify-content: center;
-}
-
-.services span {
-  color: #2199ef;
-}
-
-/* =========================
    BUTTONS
 ========================= */
 .buttons {
@@ -260,10 +257,9 @@ h1 {
   font-size: 14px;
   font-weight: 500;
   color: #ffffff;
-  transition: 0.3s;
+  transition: transform 0.3s, box-shadow 0.3s;
 }
 
-/* BOTÕES GRADIENTE */
 .buttons a.btn-ebook,
 .buttons a.whatsapp-btn {
   background: linear-gradient(135deg, #008cff, #00c3ff);
@@ -273,20 +269,17 @@ h1 {
   background: linear-gradient(135deg, #25D366, #1ebe5d);
 }
 
-/* BOTÕES SECUNDÁRIOS */
 .buttons a.secondary {
   background: transparent;
   border: 1px solid #6b7280;
   color: #ffffff;
 }
 
-/* HOVER PARA TODOS OS BOTÕES */
 .buttons a:hover {
   transform: translateY(-2px);
   box-shadow: 0 10px 25px #2199ef3a;
 }
 
-/* SVG NOS BOTÕES */
 .buttons a svg {
   width: 20px;
   height: 20px;
@@ -317,7 +310,6 @@ a.btn-ebook {
 a.btn-ebook svg {
   width: 22px;
   height: 22px;
-  flex-shrink: 0;
 }
 
 a.btn-ebook span {
@@ -368,9 +360,31 @@ a.btn-ebook:hover::before {
    FOOTER
 ========================= */
 .footer {
-  margin-top: 18px;
+  text-align: center;
+  padding: 20px;
+  margin-top: 30px;
   font-size: 11px;
   color: rgba(255, 254, 254, 0.5);
+}
+
+.footer .socials {
+  margin-bottom: 10px;
+}
+
+.footer .socials a {
+  display: inline-block;
+  margin: 0 15px;
+  color: #6b7280;
+  transition: color 0.3s;
+}
+
+.footer .socials a:hover {
+  color: #2199ef;
+}
+
+.footer svg {
+  width: 28px;
+  height: 28px;
 }
 
 /* =========================
@@ -425,30 +439,4 @@ body.light .footer {
 body.dark {
   background: linear-gradient(135deg, #0d0f15, #06070c);
   color: #ffffff;
-}
-
-.footer {
-  text-align: center;
-  padding: 20px;
-  margin-top: 30px;
-}
-
-.footer .socials {
-  margin-bottom: 10px;
-}
-
-.footer .socials a {
-  display: inline-block;
-  margin: 0 15px;
-  color: #6b7280;
-  transition: color 0.3s;
-}
-
-.footer .socials a:hover {
-  color: #2199ef;
-}
-
-.footer svg {
-  width: 28px;
-  height: 28px;
 }
